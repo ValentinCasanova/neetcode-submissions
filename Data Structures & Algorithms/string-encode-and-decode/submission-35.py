@@ -1,0 +1,20 @@
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        res = ''
+        for word in strs:
+            res += f'{len(word)}${word}'
+        return res
+
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        while i < len(s):
+            word_length = ''
+            while s[i] != "$":
+                word_length += s[i]
+                i += 1
+            word_length = int(word_length)
+            res.append(s[i+1: i + 1 + word_length])
+            i = i + 1 + word_length
+        return res
